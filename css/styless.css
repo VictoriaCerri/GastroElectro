@@ -16,15 +16,15 @@
 
         body {
             font-family: Arial, sans-serif;
-            color: var(--grafito);
-            background-color: var(--blanco);
+            color: rgb(37, 37, 37);
+            background-color: rgb(255, 255, 255);
         }
 
         /* ENCABEZADO */
 
         header {
             background-color: var(--grafito);
-            color: var(--blanco);
+            color: rgb(255, 255, 255);
             padding: 20px 7%;
             display: flex;
             justify-content: space-between;
