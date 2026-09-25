@@ -130,6 +130,12 @@ nav a:hover {
     text-align: center;
 }
 
+.seleccion {
+    font-size: 20px;
+    color: var(--gris-acero);
+    margin-bottom: 30px;
+}
+
 /* =========================
    CATEGORÍAS
 ========================= */
