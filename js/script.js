@@ -65,6 +65,50 @@ fetch(URL_SHEET)
     });
 
 
+    // ==========================================
+// Buscador de productos
+// ==========================================
+
+const buscador = document.getElementById("buscador-productos");
+
+buscador.addEventListener("input", () => {
+
+    const textoBuscado = buscador.value
+        .trim()
+        .toLowerCase();
+
+    // Si el buscador está vacío, no mostramos productos
+    if (textoBuscado === "") {
+
+        listaProductos.innerHTML = "";
+
+        return;
+    }
+
+    // Buscar coincidencias
+    const productosEncontrados = productos.filter(producto => {
+
+        return (
+            producto.codigo.toLowerCase().includes(textoBuscado) ||
+            producto.nombre.toLowerCase().includes(textoBuscado) ||
+            producto.categoria.toLowerCase().includes(textoBuscado) ||
+            producto.subcategoria.toLowerCase().includes(textoBuscado) ||
+            producto.marca.toLowerCase().includes(textoBuscado) ||
+            producto.modelo.toLowerCase().includes(textoBuscado) ||
+            producto.caracteristica.toLowerCase().includes(textoBuscado)
+        );
+
+    });
+
+    console.log(
+        "Resultados de búsqueda:",
+        productosEncontrados
+    );
+
+    mostrarProductos(productosEncontrados);
+
+});
+
 // ==========================================
 // Filtros por categoría
 // ==========================================

@@ -270,6 +270,79 @@ footer {
     padding: 25px;
 }
 
+/* ==========================================
+   BUSCADOR DE PRODUCTOS
+   ========================================== */
+
+.buscador {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto 35px;
+    display: flex;
+    justify-content: center;
+}
+
+#buscador-productos {
+    width: 100%;
+    padding: 15px 20px;
+
+    font-size: 16px;
+    font-family: inherit;
+
+    color: #252525;
+    background-color: #ffffff;
+
+    border: 2px solid #73777A;
+    border-radius: 30px;
+
+    outline: none;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+    transition: all 0.3s ease;
+}
+
+/* Cuando hacemos clic en el buscador */
+
+#buscador-productos:focus {
+    border-color: #F28C28;
+
+    box-shadow:
+        0 0 0 3px rgba(242, 140, 40, 0.15),
+        0 5px 15px rgba(0, 0, 0, 0.10);
+}
+
+/* Texto de ejemplo */
+
+#buscador-productos::placeholder {
+    color: #73777A;
+    opacity: 1;
+}
+
+/* Efecto al pasar el mouse */
+
+#buscador-productos:hover {
+    border-color: #F28C28;
+}
+
+
+/* ==========================================
+   BUSCADOR EN CELULAR
+   ========================================== */
+
+@media (max-width: 600px) {
+
+    .buscador {
+        max-width: 100%;
+        margin-bottom: 25px;
+    }
+
+    #buscador-productos {
+        padding: 13px 17px;
+        font-size: 15px;
+    }
+
+}
 /* =========================
    RESPONSIVE
 ========================= */
