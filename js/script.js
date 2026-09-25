@@ -7,7 +7,14 @@ const URL_SHEET =
 
 const listaProductos = document.getElementById("lista-productos");
 
+// Guardamos los productos para poder filtrarlos después
+let productos = [];
+
+
+// ==========================================
 // Obtener productos desde Google Sheets
+// ==========================================
+
 fetch(URL_SHEET)
     .then(response => response.text())
     .then(csv => {
@@ -18,7 +25,7 @@ fetch(URL_SHEET)
         const encabezados = filas[0].split(",");
 
         // Convertir cada fila en un producto
-        const productos = filas.slice(1).map(fila => {
+        productos = filas.slice(1).map(fila => {
 
             const columnas = fila.split(",");
 
@@ -36,10 +43,13 @@ fetch(URL_SHEET)
 
         });
 
-            console.log("Productos cargados desde Google Sheets:", productos);
+        console.log(
+            "Productos cargados desde Google Sheets:",
+            productos
+        );
 
-            
-            mostrarProductos(productos);
+        // NO mostramos los productos al cargar la página
+        listaProductos.innerHTML = "";
 
     })
     .catch(error => {
@@ -56,6 +66,50 @@ fetch(URL_SHEET)
 
 
 // ==========================================
+// Filtros por categoría
+// ==========================================
+
+document.querySelectorAll(".categoria").forEach(categoria => {
+
+    categoria.addEventListener("click", () => {
+
+        const categoriaSeleccionada =
+            categoria.dataset.categoria.trim().toLowerCase();
+
+        console.log(
+            "Categoría seleccionada:",
+            categoriaSeleccionada
+        );
+
+        const productosFiltrados = productos.filter(producto => {
+
+            return producto.categoria
+                .trim()
+                .toLowerCase() === categoriaSeleccionada;
+
+        });
+
+        console.log(
+            "Productos encontrados:",
+            productosFiltrados
+        );
+
+        // Mostrar solamente los productos de esa categoría
+        mostrarProductos(productosFiltrados);
+
+        // Bajar hasta la sección de productos
+        document
+            .getElementById("productos")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    });
+
+});
+
+
+// ==========================================
 // Mostrar productos
 // ==========================================
 
@@ -64,6 +118,18 @@ function mostrarProductos(productos) {
     listaProductos.innerHTML = "";
 
     console.log("MOSTRAR PRODUCTOS:", productos);
+
+    // Si no hay productos
+    if (productos.length === 0) {
+
+        listaProductos.innerHTML = `
+            <p class="sin-productos">
+                No hay productos disponibles en esta categoría.
+            </p>
+        `;
+
+        return;
+    }
 
     productos.forEach(producto => {
 
