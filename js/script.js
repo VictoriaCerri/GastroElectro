@@ -38,8 +38,7 @@ fetch(URL_SHEET)
 
             console.log("Productos cargados desde Google Sheets:", productos);
 
-            alert("Se cargaron " + productos.length + " productos");
-
+            
             mostrarProductos(productos);
 
     })
